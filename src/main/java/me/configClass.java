@@ -13,7 +13,7 @@ public class configClass  {
     private FileConfiguration config;
 
     public configClass(File file) {
-        this.plugin = customhealthdisplay.getPlugin();;
+        this.plugin = customhealthdisplay.getPlugin();
         this.file = new File(plugin.getDataFolder(), "config.yml");
         this.config = YamlConfiguration.loadConfiguration(file);
         
