@@ -5,8 +5,8 @@ import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
 
-public final class customhealthdisplay extends JavaPlugin {
-private static customhealthdisplay plugin;
+public final class CustomHealthDisplay extends JavaPlugin {
+private static CustomHealthDisplay plugin;
 
 
     @Override
@@ -26,7 +26,7 @@ private static customhealthdisplay plugin;
     public void onDisable() {
         getLogger().info("Custom Health Display disabled");
     }
-    public static customhealthdisplay getPlugin() {
+    public static CustomHealthDisplay getPlugin() {
         return plugin;
     }
 

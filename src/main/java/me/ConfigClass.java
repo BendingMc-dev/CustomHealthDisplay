@@ -7,16 +7,16 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import java.io.File;
 
 
-public class configClass  {
-    private customhealthdisplay plugin;
+public class ConfigClass {
+    private CustomHealthDisplay plugin;
     private File file;
     private FileConfiguration config;
 
-    public configClass(File file) {
-        this.plugin = customhealthdisplay.getPlugin();;
+    public ConfigClass(CustomHealthDisplay plugin) {
+        this.plugin = CustomHealthDisplay.getPlugin();
         this.file = new File(plugin.getDataFolder(), "config.yml");
         this.config = YamlConfiguration.loadConfiguration(file);
-        
+
     }
 
 
