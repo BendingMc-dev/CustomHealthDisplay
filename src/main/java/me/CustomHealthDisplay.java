@@ -11,13 +11,20 @@ private static CustomHealthDisplay plugin;
 
     @Override
     public void onEnable() {
-        saveResource("config.yml", false);
-        Duels api = (Duels) Bukkit.getServer().getPluginManager().getPlugin("Duels");
-        if(api.isEnabled())
-            getLogger().info("Duels found, enabling custom health display");
-        else
-            getLogger().info("Duels not found, disabling custom health display");
+        Boolean enabled = getConfig().getBoolean("enabled");
+        if(enabled == false) {
             Bukkit.getPluginManager().disablePlugin(this);
+            getLogger().info("Custom Health Display is disabled in config");
+        }
+        else {
+            saveResource("config.yml", false);
+            Duels api = (Duels) Bukkit.getServer().getPluginManager().getPlugin("Duels");
+            if (api.isEnabled())
+                getLogger().info("Duels found, enabling custom health display");
+            else
+                getLogger().info("Duels not found, disabling custom health display");
+            Bukkit.getPluginManager().disablePlugin(this);
+        }
 
 
     }

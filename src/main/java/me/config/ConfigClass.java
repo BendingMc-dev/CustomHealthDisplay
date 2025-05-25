@@ -1,6 +1,7 @@
-package me;
+package me.config;
 
 
+import me.CustomHealthDisplay;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 
