@@ -1,16 +1,24 @@
 package me;
 
-import me.realized.duels.api.event.spectate.SpectateEvent;
-import me.realized.duels.api.spectate.SpectateManager;
+
+import me.realized.duels.api.event.match.MatchStartEvent;
+import me.realized.duels.api.match.Match;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.scheduler.BukkitRunnable;
+
 
 public class ListenerClass implements Listener {
-
-    public void onSpectate(SpectateManager manager) {
-
-
+    @EventHandler
+    public void onMatchStart(MatchStartEvent event) {
+       Player[] players = event.getPlayers();
+       
+    }
+    public void onMatchEnd(Match match) {
+        if(match == null) {
+            return;
+        }
     }
 
 }
