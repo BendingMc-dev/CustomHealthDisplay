@@ -23,7 +23,7 @@ public class ListenerClass implements Listener {
 
     public ListenerClass(CustomHealthDisplay plugin) {
         this.plugin = plugin;
-       //RunnableClass runnableClass = new RunnableClass(plugin);
+        //RunnableClass runnableClass = new RunnableClass(plugin);
     }
 
 
@@ -38,8 +38,9 @@ public class ListenerClass implements Listener {
        Set<Player> players = event.getMatch().getPlayers();
 
        RunnableClass runnableClass = new RunnableClass(plugin, players);
+        
        ongoingRunnables.put(arena, runnableClass);
-       ongoingRunnables.put(arena, task);
+       
 
 
 
