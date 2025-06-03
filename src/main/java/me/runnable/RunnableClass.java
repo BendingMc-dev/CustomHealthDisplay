@@ -17,5 +17,12 @@ public class RunnableClass implements Runnable {
         plugin.getLogger().info("Match began.");
 
     }
-
+    public String toString() {
+        return "runnableClass:" +
+               "\nPlayers = " + this.players +
+               "\nTask = " + this.task;
+            
+               
+    
+    }
 }
