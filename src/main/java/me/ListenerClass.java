@@ -18,7 +18,7 @@ import java.util.Set;
 public class ListenerClass implements Listener {
     private CustomHealthDisplay plugin;
     private HashMap<Arena, RunnableClass> ongoingRunnables = new HashMap<>();
-    private BukkitTast task = Bukkit.getScheduler().runTaskTimer(plugin, runnableClass, 0L, 20L)
+
 
 
     public ListenerClass(CustomHealthDisplay plugin) {
@@ -32,7 +32,7 @@ public class ListenerClass implements Listener {
 
     @EventHandler
     public void onMatchStart(MatchStartEvent event) {
-
+       
        Arena arena = event.getMatch().getArena();
 
        Set<Player> players = event.getMatch().getPlayers();
@@ -40,15 +40,21 @@ public class ListenerClass implements Listener {
        RunnableClass runnableClass = new RunnableClass(plugin, players);
         
        ongoingRunnables.put(arena, runnableClass);
-       
+    
+       BukkitTask task = Bukkit.getScheduler().runTaskTimer(plugin, runnableClass, 0L, 20L)
 
+       ongoingRunnables.get(arena);
+        if(
 
 
     }
     @EventHandler
     public void onMatchEnd(MatchEndEvent match) {
-    
+        RunnableClass runnableClass = ongoingRunnables.remove(arena);
+        if (runnableClass != null) {
+        runnableClass.cancel();
         }
     }
+}
 
 
