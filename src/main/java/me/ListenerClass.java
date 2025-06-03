@@ -18,11 +18,12 @@ import java.util.Set;
 public class ListenerClass implements Listener {
     private CustomHealthDisplay plugin;
     private HashMap<Arena, RunnableClass> ongoingRunnables = new HashMap<>();
+    private BukkitTast task = Bukkit.getScheduler().runTaskTimer(plugin, runnableClass, 0L, 20L)
 
 
     public ListenerClass(CustomHealthDisplay plugin) {
         this.plugin = plugin;
-        RunnableClass runnableClass = new RunnableClass(plugin);
+       //RunnableClass runnableClass = new RunnableClass(plugin);
     }
 
 
@@ -38,13 +39,14 @@ public class ListenerClass implements Listener {
 
        RunnableClass runnableClass = new RunnableClass(plugin, players);
        ongoingRunnables.put(arena, runnableClass);
+       ongoingRunnables.put(arena, task);
 
 
 
     }
     @EventHandler
     public void onMatchEnd(MatchEndEvent match) {
-
+    
         }
     }
 
