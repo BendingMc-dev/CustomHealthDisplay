@@ -20,6 +20,14 @@ public class RunnableClass implements Runnable {
         plugin.getLogger().info("Match began: " + this.plugin.toString() + "" + this.players.toString() + "" + this.arena.toString());
 
     }
+    public Set<Player> getPlayers() {
+        return players;
+    }
+    public Arena getArena() {
+        return arena;
+    }
+    
+    
     public String toString() {
         return "runnableClass:" + this.plugin.toString() +
                "\nPlayers = " + this.players +
