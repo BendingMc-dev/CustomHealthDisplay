@@ -34,17 +34,12 @@ public class ListenerClass implements Listener {
     public void onMatchStart(MatchStartEvent event) {
        
        Arena arena = event.getMatch().getArena();
-
        Set<Player> players = event.getMatch().getPlayers();
-
+       BukkitTask task = Bukkit.getScheduler().runTaskTimer(plugin, runnableClass, 0L, 20L)        
        RunnableClass runnableClass = new RunnableClass(plugin, players, task);
         
        ongoingRunnables.put(arena, runnableClass);
-    
-       BukkitTask task = Bukkit.getScheduler().runTaskTimer(plugin, runnableClass, 0L, 20L)
-
        ongoingRunnables.get(arena);
-           
        ongoingRunnables.get(runnableClass);
         if (ongoingRunnables.get(arena).equals("null") && ongoingRunnables.get(runnableClass).equals("null")) {
             plugin.getLogger().info("Arena and RunnableClass equal null, removing data.")
