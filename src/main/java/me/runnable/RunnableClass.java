@@ -8,19 +8,22 @@ import java.util.Set;
 public class RunnableClass implements Runnable {
     private CustomHealthDisplay plugin;
     private Set<Player> players;
+    private Arena arena;
 
-    public RunnableClass(CustomHealthDisplay plugin, Set<Player> players) {
+    public RunnableClass(CustomHealthDisplay plugin, Set<Player> players, Arena arena) {
         this.plugin = plugin;
         this.players = players;
+        this.arena = arena;
     }
     @Override
     public void run() {
-        plugin.getLogger().info("Match began: " + this.plugin.toString() + "" + this.players.toString());
+        plugin.getLogger().info("Match began: " + this.plugin.toString() + "" + this.players.toString() + "" + this.arena.toString());
 
     }
     public String toString() {
         return "runnableClass:" + this.plugin.toString() +
-               "\nPlayers = " + this.players;
+               "\nPlayers = " + this.players +
+               "\nArena = " + this.arena;
 
 
     }
