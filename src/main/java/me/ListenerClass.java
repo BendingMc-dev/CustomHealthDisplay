@@ -50,12 +50,19 @@ public class ListenerClass implements Listener {
     @EventHandler
     public void onMatchEnd(MatchEndEvent event) {
         if (event.getWinner() != null) {
-            ongoingRunnables.get(task);
+            BukkitTask task = ongoingRunnables.get(task);
             task.cancel();
+            
             ongoingRunnables.remove(task);
         
         }
-
-
+    }
+    @EventHandler
+    public void onSpectate(SpectateStartEvent event) {
+        Spectator spectator = event.getSpectator();
+        plugin.getLogger().info(spectator + "has started spectating!")
+        if(spectator == null) {
+            Spectate.setCancelled();
+        } 
     }
 }
