@@ -17,9 +17,7 @@ import java.util.Set;
 
 public class ListenerClass implements Listener {
     private CustomHealthDisplay plugin;
-    private HashMap<Arena, RunnableClass> ongoingRunnables = new HashMap<>();
-    private HashMap<Arena, BukkitTask> ongoingTasks = new HashMap<>();
-
+    private HashMap<BukkitTask, RunnableClass> ongoingRunnables = new HashMap<>();
 
     public ListenerClass(CustomHealthDisplay plugin) {
         this.plugin = plugin;
@@ -35,14 +33,14 @@ public class ListenerClass implements Listener {
         Arena arena = event.getMatch().getArena();
         Set<Player> players = event.getMatch().getPlayers();
 
-        RunnableClass runnableClass = new RunnableClass(plugin, players);
+        RunnableClass runnableClass = new RunnableClass(plugin, players, arena);
         BukkitTask task = Bukkit.getScheduler().runTaskTimer(plugin, runnableClass, 0L, 20L);
         plugin.getLogger().info("Match started: " + ongoingRunnables.get(arena));
 
-        ongoingRunnables.put(arena, runnableClass);
-        if (!ongoingRunnables.containsKey(arena) && !ongoingRunnables.containsKey(runnableClass)) {
-            plugin.getLogger().info("Arena and RunnableClass equal null, removing data.");
-            ongoingRunnables.remove(arena);
+        ongoingRunnables.put(task, runnableClass);
+        if (!ongoingRunnables.containsKey(task) && !ongoingRunnables.containsValue(runnableClass)) {
+            plugin.getLogger().info("BukkitTask and RunnableClass equal null, removing data.");
+            ongoingRunnables.remove(task);
             task.cancel();
         }
 
@@ -51,7 +49,12 @@ public class ListenerClass implements Listener {
     }
     @EventHandler
     public void onMatchEnd(MatchEndEvent event) {
-        Arena arena = event.getMatch().getArena();
+        if (event.getWinner() != null) {
+            ongoingRunnables.get(task);
+            task.cancel();
+            ongoingRunnables.remove(task);
+        
+        }
 
 
     }
