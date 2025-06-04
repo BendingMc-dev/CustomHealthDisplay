@@ -14,7 +14,7 @@ public class ConfigClass {
     private FileConfiguration config;
 
     public ConfigClass(CustomHealthDisplay plugin) {
-        this.plugin = CustomHealthDisplay.getPlugin();
+        this.plugin = plugin;
         this.file = new File(plugin.getDataFolder(), "config.yml");
         this.config = YamlConfiguration.loadConfiguration(file);
 
@@ -32,14 +32,7 @@ public class ConfigClass {
             }
         }
     }
-    public void saveConfig() {
-        try {
-            config.options().copyDefaults(true);
-            config.save(file);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+
     public FileConfiguration getConfig() {
         return config;
     }

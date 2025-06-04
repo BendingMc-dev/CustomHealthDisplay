@@ -4,12 +4,12 @@ package me;
 import me.realized.duels.api.arena.Arena;
 import me.realized.duels.api.event.match.MatchEndEvent;
 import me.realized.duels.api.event.match.MatchStartEvent;
-import me.realized.duels.api.match.Match;
 import me.runnable.RunnableClass;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.scheduler.BukkitRunnable;
+import org.bukkit.scheduler.BukkitTask;
 
 import java.util.HashMap;
 import java.util.Set;
@@ -18,12 +18,11 @@ import java.util.Set;
 public class ListenerClass implements Listener {
     private CustomHealthDisplay plugin;
     private HashMap<Arena, RunnableClass> ongoingRunnables = new HashMap<>();
-
+    private HashMap<Arena, BukkitTask> ongoingTasks = new HashMap<>();
 
 
     public ListenerClass(CustomHealthDisplay plugin) {
         this.plugin = plugin;
-        //RunnableClass runnableClass = new RunnableClass(plugin);
     }
 
 
@@ -32,31 +31,28 @@ public class ListenerClass implements Listener {
 
     @EventHandler
     public void onMatchStart(MatchStartEvent event) {
-       
-       Arena arena = event.getMatch().getArena();
-       Set<Player> players = event.getMatch().getPlayers();
-       BukkitTask task = Bukkit.getScheduler().runTaskTimer(plugin, runnableClass, 0L, 20L)        
-       RunnableClass runnableClass = new RunnableClass(plugin, players, task);
-        
-       ongoingRunnables.put(arena, runnableClass);
-       ongoingRunnables.get(arena);
-       ongoingRunnables.get(runnableClass);
-        if (ongoingRunnables.get(arena).equals("null") && ongoingRunnables.get(runnableClass).equals("null")) {
-            plugin.getLogger().info("Arena and RunnableClass equal null, removing data.")
+
+        Arena arena = event.getMatch().getArena();
+        Set<Player> players = event.getMatch().getPlayers();
+
+        RunnableClass runnableClass = new RunnableClass(plugin, players);
+        BukkitTask task = Bukkit.getScheduler().runTaskTimer(plugin, runnableClass, 0L, 20L);
+        plugin.getLogger().info("Match started: " + ongoingRunnables.get(arena));
+
+        ongoingRunnables.put(arena, runnableClass);
+        if (!ongoingRunnables.containsKey(arena) && !ongoingRunnables.containsKey(runnableClass)) {
+            plugin.getLogger().info("Arena and RunnableClass equal null, removing data.");
             ongoingRunnables.remove(arena);
-            runnableClass.cancel;
+            task.cancel();
         }
-    
+
 
 
     }
     @EventHandler
-    public void onMatchEnd(MatchEndEvent match) {
-        RunnableClass runnableClass = ongoingRunnables.remove(arena);
-        if (runnableClass != null) {
-        runnableClass.cancel();
-        }
+    public void onMatchEnd(MatchEndEvent event) {
+        Arena arena = event.getMatch().getArena();
+
+
     }
 }
-
-
