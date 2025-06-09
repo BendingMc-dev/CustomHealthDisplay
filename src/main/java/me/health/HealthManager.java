@@ -8,8 +8,10 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 
 public class HealthManager {
-  private CustomHealthDisplay plugin;
+  private static CustomHealthDisplay plugin;
+  
   public HealthManager(CustomHealthDisplay plugin) {
     this.plugin = plugin;
   }
+  public actionBar
 }
