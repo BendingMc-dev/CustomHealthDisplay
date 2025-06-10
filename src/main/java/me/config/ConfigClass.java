@@ -24,12 +24,22 @@ public class ConfigClass {
     public void createConfig() {
         if(!file.exists()) {
             try {
-                file.createNewFile();
-                plugin.getLogger().info("Config file created" + file.getName());
+                file.getParentFile().mkdirs();
+                plugin.getLogger().info("Config directory generated " + file.getParentFile());
             }
             catch (Exception e) {
-                plugin.getLogger().info("Config file creation failed" + file.getName());
+                plugin.getLogger().info("Config directory failed " + file.getParentFile());
             }
+        }
+        if (!file.exists()) {
+            try {
+                file.createNewFile();
+                plugin.getLogger().info("Config file generated " + file.getName());
+            }
+            catch (Exception e) {
+                plugin.getLogger().info("Config file generation failed " + file.getName());
+            }
+
         }
     }
 

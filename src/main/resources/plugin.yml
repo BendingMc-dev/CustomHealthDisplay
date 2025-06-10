@@ -8,3 +8,4 @@ description: Utilises Duels API to display both players health on the action bar
 website: https://github.com/RyanDusty
 depend:
   - Duels
+  - CustomCooking
