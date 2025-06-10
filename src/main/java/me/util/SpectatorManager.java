@@ -11,4 +11,7 @@ public class SpectatorManager() {
   public void setSpectators() {
     this.spectator = spectator;
   }
+  public Spectator getSpectators() {
+    return this.spectator;
+  }
 }
