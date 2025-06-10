@@ -59,6 +59,7 @@ public class ListenerClass implements Listener {
     }
     @EventHandler
     public void onSpectate(SpectateStartEvent event) {
+        SpectatorManager spectatorManager = new SpectatorManager(plugin, spectator);
         Spectator spectator = event.getSpectator();
         plugin.getLogger().info(spectator + "has started spectating!")
         if(spectator == null) {
