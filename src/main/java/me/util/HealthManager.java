@@ -9,5 +9,4 @@ public class HealthManager {
         this.plugin = plugin;
     }
 
-
 }

@@ -10,7 +10,6 @@ import org.bukkit.plugin.java.JavaPlugin;
 public final class CustomHealthDisplay extends JavaPlugin {
 private static CustomHealthDisplay plugin;
 
-
     @Override
     public void onEnable() {
         ConfigClass config = new ConfigClass(this);
