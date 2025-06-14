@@ -14,7 +14,6 @@ private static CustomHealthDisplay plugin;
     public void onEnable() {
         ConfigClass config = new ConfigClass(this);
         config.createConfig();
-        saveResource("config.yml", false);
 
         getServer().getPluginManager().registerEvents(new ListenerClass(this), this);
         getLogger().info("Custom Health Display enabled");
