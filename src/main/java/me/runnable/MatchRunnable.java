@@ -16,8 +16,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
-import static java.awt.Color.red;
-
 public class MatchRunnable extends BukkitRunnable {
     private CustomHealthDisplay plugin;
     private Set<Player> players;
@@ -26,7 +24,6 @@ public class MatchRunnable extends BukkitRunnable {
     private SpectateManager spectateManager;
     private ArenaManager arenaManager;
     private Arena arena;
-    private CustomCooking cooking;
 
 
 
@@ -57,7 +54,7 @@ public class MatchRunnable extends BukkitRunnable {
             plugin.getLogger().info("Arena is null");
             return;
         }
-        plugin.getLogger().info("Match: " + arena.toString() + " Players: " + this.players.toString());
+       // plugin.getLogger().info("Match: " + arena.toString() + " Players: " + this.players.toString());
         List<Spectator> spectators = getSpectators(spectateManager);
         for (Spectator spectator : spectators) {
             Player player = spectator.getPlayer();

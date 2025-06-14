@@ -47,7 +47,7 @@ public class ListenerClass implements Listener {
 
         MatchRunnable task = new MatchRunnable(plugin, players);
         task.runTaskTimer(plugin, 0L, 20L);
-        plugin.getLogger().info("Match started: " + ongoingRunnables.get(arena));
+     //   plugin.getLogger().info("Match started: " + ongoingRunnables.get(arena));
 
         ongoingRunnables.put(arena, task);
         if (!ongoingRunnables.containsKey(arena) && !ongoingRunnables.containsValue(task)) {
@@ -68,6 +68,6 @@ public class ListenerClass implements Listener {
         if (task != null) {
             task.cancel();
         }
-        plugin.getLogger().info("Match ended: " + players.toString());
+      //  plugin.getLogger().info("Match ended: " + players.toString());
     }
 }
