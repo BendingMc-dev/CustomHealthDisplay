@@ -9,7 +9,6 @@ import me.realized.duels.api.spectate.Spectator;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
-import plugin.customcooking.CustomCooking;
 import plugin.customcooking.utility.AdventureUtil;
 
 import java.util.Iterator;
@@ -51,10 +50,10 @@ public class MatchRunnable extends BukkitRunnable {
     @Override
     public void run() {
         if(arena == null) {
-            plugin.getLogger().info("Arena is null");
+           // plugin.getLogger().info("Arena is null");
             return;
         }
-       // plugin.getLogger().info("Match: " + arena.toString() + " Players: " + this.players.toString());
+        //plugin.getLogger().info("Match: " + arena.toString() + " Players: " + this.players.toString());
         List<Spectator> spectators = getSpectators(spectateManager);
         for (Spectator spectator : spectators) {
             Player player = spectator.getPlayer();

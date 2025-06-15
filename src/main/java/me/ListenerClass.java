@@ -23,7 +23,10 @@ public class ListenerClass implements Listener {
 
     public ListenerClass(CustomHealthDisplay plugin) {
         Duels api = (Duels) Bukkit.getServer().getPluginManager().getPlugin("Duels");
-
+        if(api == null) {
+            plugin.getLogger().info("Duels not found");
+            return;
+        }
         this.plugin = plugin;
         this.arenaManager = api.getArenaManager();
 
@@ -36,8 +39,8 @@ public class ListenerClass implements Listener {
 
 
         Set<Player> players = event.getMatch().getPlayers();
-        MatchRunnable matchRunnable = new MatchRunnable(plugin, players);
-        Player player1 = matchRunnable.getPlayer1();
+        MatchRunnable task = new MatchRunnable(plugin, players);
+        Player player1 = task.getPlayer1();
         Arena arena = arenaManager.get(player1);
         if(arena == null) {
             plugin.getLogger().info("Arena is null");
@@ -45,9 +48,8 @@ public class ListenerClass implements Listener {
 
 
 
-        MatchRunnable task = new MatchRunnable(plugin, players);
         task.runTaskTimer(plugin, 0L, 20L);
-     //   plugin.getLogger().info("Match started: " + ongoingRunnables.get(arena));
+        plugin.getLogger().info("Match started: " + ongoingRunnables.get(arena));
 
         ongoingRunnables.put(arena, task);
         if (!ongoingRunnables.containsKey(arena) && !ongoingRunnables.containsValue(task)) {
@@ -68,6 +70,6 @@ public class ListenerClass implements Listener {
         if (task != null) {
             task.cancel();
         }
-      //  plugin.getLogger().info("Match ended: " + players.toString());
+       // plugin.getLogger().info("Match ended: " + players.toString());
     }
 }
