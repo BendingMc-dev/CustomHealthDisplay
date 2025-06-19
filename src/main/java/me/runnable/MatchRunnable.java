@@ -49,10 +49,6 @@ public class MatchRunnable extends BukkitRunnable {
 
     @Override
     public void run() {
-        if(arena == null) {
-           // plugin.getLogger().info("Arena is null");
-            return;
-        }
         //plugin.getLogger().info("Match: " + arena.toString() + " Players: " + this.players.toString());
         List<Spectator> spectators = getSpectators(spectateManager);
         for (Spectator spectator : spectators) {
